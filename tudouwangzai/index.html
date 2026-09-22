@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="土豆网在线看电视剧 - 提供最新最全的国产剧、韩剧、美剧、日剧高清在线观看服务。涵盖热播剧集、经典老剧、综艺娱乐，支持多倍速播放与高清画质选择。">
+    <meta name="keywords" content="土豆网在线看电视剧,在线看剧,高清电视剧,国产剧,韩剧,美剧,免费视频网站">
+    <title>土豆网在线看电视剧-热播剧集高清观看平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #f35d59;
+            --primary-hover: #e04842;
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --border-radius: 8px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 20px;
+            padding: 4px 12px;
+            align-items: center;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding: 4px;
+            width: 160px;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            border-radius: var(--border-radius);
+            margin: 24px 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero-content {
+            padding: 40px;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 15px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .hero-bg {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('https://picsum.photos/seed/tudouhero/800/600');
+            background-size: cover;
+            background-position: center;
+            mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            background-color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .view-all {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .view-all:hover {
+            color: var(--primary-color);
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-thumb {
+            position: relative;
+            width: 100%;
+            padding-top: 140%; /* 5:7 Aspect Ratio */
+            background-color: #eee;
+        }
+
+        .card-thumb img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .card-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            background-color: rgba(243, 93, 89, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .video-card:hover .card-play-icon {
+            opacity: 1;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Banner Ad Placeholder */
+        .banner-ad {
+            width: 100%;
+            height: 90px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            border-radius: var(--border-radius);
+            margin: 32px 0;
+            border: 1px dashed #ccc;
+        }
+
+        /* Channel Grid */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .channel-item {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+
+        .channel-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .channel-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2b2b2b;
+            color: #ccc;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-inner {
+                justify-content: center;
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .channel-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="4" fill="#f35d59"/>
+                    <path d="M7 8L17 12L7 16V8Z" fill="white"/>
+                </svg>
+                <span>TudouTV</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">国产剧</a>
+                <a href="#">韩剧</a>
+                <a href="#">美剧</a>
+                <a href="#">日剧</a>
+                <a href="#">综艺</a>
+            </nav>
+
+            <div class="search-bar">
+                <input type="text" placeholder="搜索电视剧、演员...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-tag">本周热播</span>
+                <h1>长安十二时辰：风起长安，夜色未央</h1>
+                <p>唐天宝三载，上元节当夜，长安城陷入死局。张小敬临危受命，在十二时辰内拯救全城。高清全集免费看，体验极致的古装悬疑魅力。</p>
+                <a href="#" class="btn btn-primary">立即观看</a>
+            </div>
+            <div class="hero-bg"></div>
+        </section>
+
+        <!-- Categories -->
+        <section class="channel-grid">
+            <div class="channel-item">
+                <span class="channel-icon">📺</span>
+                <div class="channel-name">国产剧</div>
+            </div>
+            <div class="channel-item">
+                <span class="channel-icon">🇰🇷</span>
+                <div class="channel-name">韩剧</div>
+            </div>
+            <div class="channel-item">
+                <span class="channel-icon">🇺🇸</span>
+                <div class="channel-name">美剧</div>
+            </div>
+            <div class="channel-item">
+                <span class="channel-icon">🎬</span>
+                <div class="channel-name">动漫</div>
+            </div>
+            <div class="channel-item">
+                <span class="channel-icon">🎵</span>
+                <div class="channel-name">综艺</div>
+            </div>
+            <div class="channel-item">
+                <span class="channel-icon">📚</span>
+                <div class="channel-name">纪录片</div>
+            </div>
+            <div class="channel-item">
+                <span class="channel-icon">🎬</span>
+                <div class="channel-name">电影</div>
+            </div>
+            <div class="channel-item">
+                <span class="channel-icon">🎥</span>
+                <div class="channel-name">微电影</div>
+            </div>
+        </section>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="tab active">全部</div>
+            <div class="tab">最新更新</div>
+            <div class="tab">高分推荐</div>
+            <div class="tab">完结大剧</div>
+            <div class="tab">近期热门</div>
+        </div>
+
+        <!-- Hot Section -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">正在热播</h2>
+                <a href="#" class="view-all">更多 ></a>
+            </div>
+            
+            <div class="video-grid">
+                <!-- Card 1 -->
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama1/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">庆余年 第二季</h3>
+                        <div class="card-meta">
+                            <span>更新至 24 集</span>
+                            <span>9.8分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama2/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">繁花</h3>
+                        <div class="card-meta">
+                            <span>全 30 集</span>
+                            <span>9.6分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama3/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">狂飙</h3>
+                        <div class="card-meta">
+                            <span>全 39 集</span>
+                            <span>9.2分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama4/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">三体</h3>
+                        <div class="card-meta">
+                            <span>全 30 集</span>
+                            <span>9.5分</span>
+                        </div>
+                    </div>
+                </article>
+
+                 <!-- Card 5 -->
+                 <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama5/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">长风渡</h3>
+                        <div class="card-meta">
+                            <span>全 40 集</span>
+                            <span>8.9分</span>
+                        </div>
+                    </div>
+                </article>
+
+                 <!-- Card 6 -->
+                 <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama6/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">黑暗荣耀</h3>
+                        <div class="card-meta">
+                            <span>全 16 集</span>
+                            <span>9.4分</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Banner Ad -->
+        <div class="banner-ad">
+            广告位：高清会员尊享 4K 画质 / 无广告打扰
+        </div>
+
+        <!-- Recommendations Section -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">为您推荐</h2>
+                <a href="#" class="view-all">更多 ></a>
+            </div>
+            
+            <div class="video-grid">
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama7/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">知否知否应是绿肥红瘦</h3>
+                        <div class="card-meta">
+                            <span>全 78 集</span>
+                            <span>9.0分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama8/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">甄嬛传</h3>
+                        <div class="card-meta">
+                            <span>全 76 集</span>
+                            <span>9.7分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama9/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">漫长的季节</h3>
+                        <div class="card-meta">
+                            <span>全 12 集</span>
+                            <span>9.3分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/drama10/300/420" alt="电视剧封面">
+                        <span class="card-badge">HD</span>
+                        <div class="card-play-icon">▶</div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">我的阿勒泰</h3>
+                        <div class="card-meta">
+                            <span>全 8 集</span>
+                            <span>9.1分</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="margin-top: 40px; background: white; padding: 30px; border-radius: 8px;">
+            <h2 class="section-title">观看指南</h2>
+            <div style="margin-top: 20px;">
+                <details style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <summary style="cursor: pointer; font-weight: 500; color: var(--text-main);">如何在线观看电视剧？</summary>
+                    <p style="margin-top: 8px; color: var(--text-secondary); font-size: 14px;">只需在搜索框输入剧名，或点击分类导航找到您想看的剧集，点击封面即可开始播放。支持电脑端和手机端浏览器直接观看。</p>
+                </details>
+                <details style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <summary style="cursor: pointer; font-weight: 500; color: var(--text-main);">支持哪些播放设备？</summary>
+                    <p style="margin-top: 8px; color: var(--text-secondary); font-size: 14px;">本站支持所有主流设备，包括 Windows 电脑、Mac 电脑、iPhone、iPad、Android 手机及平板电脑。所有视频均为自适应流媒体格式。</p>
+                </details>
+                <details style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <summary style="cursor: pointer; font-weight: 500; color: var(--text-main);">播放卡顿怎么办？</summary>
+                    <p style="margin-top: 8px; color: var(--text-secondary); font-size: 14px;">请尝试切换清晰度（标清/高清/超清），或检查您的网络连接。如果问题依旧，建议刷新页面或更换浏览器。</p>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 16px;">
+                        <span>TudouTV</span>
+                    </div>
+                    <p style="font-size: 13px; line-height: 1.8; color: #999;">
+                        专注于提供优质的在线电视剧观看体验。汇聚全网热门剧集，提供高清流畅的播放服务，致力于成为您最值得信赖的影视娱乐平台。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h3>剧集分类</h3>
+                    <ul>
+                        <li><a href="#">国产剧</a></li>
+                        <li><a href="#">韩剧</a></li>
+                        <li><a href="#">美剧</a></li>
+                        <li><a href="#">日剧</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>帮助中心</h3>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>联系我们</h3>
+                    <ul>
+                        <li>客服邮箱: support@tudoutv.com</li>
+                        <li>合作联系: bd@tudoutv.com</li>
+                        <li>地址：互联网技术产业园A座</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 TudouTV 在线看电视剧平台. All Rights Reserved. 本站所有内容均来自互联网，仅供学习交流使用。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
