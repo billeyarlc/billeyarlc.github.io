@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好好学习天天向上 - 持续成长与高效学习方法指南</title>
+    <meta name="description" content="提供全面的学习方法、时间管理技巧、知识体系构建指南及成长心态培养资源，帮助用户实现‘好好学习，天天向上’的人生目标。">
+    <meta name="keywords" content="好好学习天天向上,学习方法,时间管理,高效学习,个人成长">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --accent-hover: #219150;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-radius: 8px;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .header-cta {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .header-cta:hover {
+            background-color: var(--accent-hover);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+        }
+
+        /* Core Methods */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .method-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        .method-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .method-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .method-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .method-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .method-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Knowledge Structure */
+        .structure-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .structure-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .structure-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .structure-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .structure-visual {
+            flex: 1;
+            min-width: 300px;
+            background: #f0f4f8;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            background: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #f9f9f9;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                margin: 1rem 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .structure-section {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span>好好学习</span>天天向上
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#methods">核心方法</a></li>
+                    <li><a href="#structure">知识体系</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="header-cta">开始成长</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>构建终身学习体系</h1>
+            <p>在信息爆炸的时代，掌握科学的学习方法与高效的时间管理技巧，是践行“好好学习，天天向上”的最佳途径。</p>
+            <div class="hero-buttons">
+                <a href="#methods" class="btn btn-primary">探索学习方法</a>
+                <a href="#structure" class="btn btn-secondary">规划学习路径</a>
+            </div>
+        </section>
+
+        <!-- Core Methods Section -->
+        <section id="methods" class="container">
+            <div class="section-title">
+                <h2>高效学习的核心方法论</h2>
+                <p>科学的学习策略能够显著提升知识吸收率与记忆力</p>
+            </div>
+            
+            <div class="methods-grid">
+                <article class="method-card">
+                    <div class="method-icon">📝</div>
+                    <h3>费曼学习法</h3>
+                    <p>通过“以教代学”的方式，将复杂的概念用通俗的语言复述出来。如果你无法简单地解释它，说明你还没有完全理解它。</p>
+                    <ul class="method-list">
+                        <li>选择一个概念</li>
+                        <li>模拟教学场景</li>
+                        <li>识别知识盲区</li>
+                        <li>简化与重构</li>
+                    </ul>
+                </article>
+
+                <article class="method-card">
+                    <div class="method-icon">⏱️</div>
+                    <h3>番茄工作法</h3>
+                    <p>利用25分钟专注学习和5分钟休息的循环，帮助大脑保持高度集中，避免长时间学习带来的疲劳和效率下降。</p>
+                    <ul class="method-list">
+                        <li>设定25分钟倒计时</li>
+                        <li>专注当前任务</li>
+                        <li>休息5分钟</li>
+                        <li>每4个循环大休息</li>
+                    </ul>
+                </article>
+
+                <article class="method-card">
+                    <div class="method-icon">📚</div>
+                    <h3>SQ3R 阅读法</h3>
+                    <p>一种系统性的阅读策略，适用于教材、书籍等深度阅读材料，能帮助读者快速抓取重点并建立知识框架。</p>
+                    <ul class="method-list">
+                        <li>浏览全书结构</li>
+                        <li>提出问题</li>
+                        <li>精读并寻找答案</li>
+                        <li>背诵与复习</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Knowledge Structure Section -->
+        <section id="structure" class="container">
+            <div class="structure-section">
+                <div class="structure-content">
+                    <h2>如何搭建个人知识体系？</h2>
+                    <p>“好好学习”不仅是记忆知识点，更是建立连接。一个稳固的知识体系应当具备自下而上的积累与自上而下的应用能力。</p>
+                    <p>我们建议按照以下四个维度进行构建：输入端、整理端、输出端和反馈端。</p>
+                    <a href="#" class="btn btn-primary">查看知识图谱</a>
+                </div>
+                <div class="structure-visual">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <strong>广泛输入</strong>
+                            <p style="font-size:0.85rem; color:#666;">阅读经典、关注行业资讯、记录灵感</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <strong>深度加工</strong>
+                            <p style="font-size:0.85rem; color:#666;">提炼观点、建立标签、绘制思维导图</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <strong>实践输出</strong>
+                            <p style="font-size:0.85rem; color:#666;">写作、分享、实际操作、项目实践</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <strong>复盘迭代</strong>
+                            <p style="font-size:0.85rem; color:#666;">总结得失、修正方法、持续精进</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="container faq-section">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+                <p>在学习过程中遇到困难？这里有一些通用的解决思路</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">如何克服学习时的拖延症？</div>
+                <div class="faq-answer">
+                    拖延通常源于对任务的畏难情绪或完美主义倾向。建议采用“5分钟起步法”，告诉自己只做5分钟，往往一旦开始就能坚持下去。同时，将大任务拆解为微小、具体的行动步骤，降低启动门槛。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">每天时间有限，应该先学什么？</div>
+                <div class="faq-answer">
+                    建议优先处理“重要且紧急”的任务，或者是你当前最薄弱的环节。使用艾森豪威尔矩阵进行分类，确保每天的学习精力集中在核心能力的提升上，而非琐碎的杂事上。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">碎片化时间适合学习吗？</div>
+                <div class="faq-answer">
+                    碎片化时间适合进行“输入”和“回顾”，例如背诵单词、复习笔记或听有声书。但构建深度知识体系需要大块的整块时间，建议每周至少保证2-3个整块的深度学习时段。
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>好好学习天天向上</h4>
+                <p style="opacity: 0.7; font-size: 0.9rem; line-height: 1.6;">
+                    致力于分享最实用的学习方法、效率工具与成长心得，陪伴每一位求学者在知识的海洋中不断前行。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速导航</h4>
+                <ul>
+                    <li><a href="#">学习方法论</a></li>
+                    <li><a href="#">时间管理</a></li>
+                    <li><a href="#">思维工具</a></li>
+                    <li><a href="#">阅读清单</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">团队介绍</a></li>
+                    <li><a href="#">投稿指南</a></li>
+                    <li><a href="#">联系合作</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 好好学习天天向上学习平台. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的 FAQ 交互逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // 如果需要实现手风琴效果（每次只开一个），取消下面注释
+                    /*
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) otherItem.classList.remove('active');
+                    });
+                    */
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
