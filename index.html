@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="浏览器UC官网 - UCBrowser为您提供极速、安全、智能的移动端浏览体验。支持视频加速、无痕浏览、个性化主页及海量插件，是您手机上网的首选工具。">
+    <meta name="keywords" content="浏览器UC,UC浏览器,UC,手机浏览器,极速浏览,视频加速,无痕模式">
+    <title>浏览器UC - 极速安全智能的移动上网体验</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff7f00;
+            --primary-hover: #e67300;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --bg-body: #f5f7fa;
+            --bg-card: #ffffff;
+            --border-radius: 12px;
+            --spacing-unit: 20px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-card);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-hover);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, #fff5eb 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-large {
+            padding: 14px 40px;
+            font-size: 18px;
+            border-radius: 30px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #fff5eb;
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #fff5eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Speed Test Section */
+        .speed-test-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .speed-content h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .speed-content p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .speed-btn {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* App Showcase */
+        .showcase {
+            padding: 80px 0;
+        }
+
+        .showcase-layout {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .showcase-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background-color: #eee;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* Simulating a phone screen with CSS */
+        .phone-mockup {
+            width: 280px;
+            height: 560px;
+            background: #fff;
+            border-radius: 30px;
+            border: 8px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 20px;
+            background: #333;
+            border-radius: 0 0 15px 15px;
+            z-index: 10;
+        }
+
+        .app-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #ff7f00 0%, #ff9a44 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .app-screen h4 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .app-screen span {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .showcase-text {
+            flex: 1;
+        }
+
+        .showcase-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .showcase-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .check-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .check-list li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c2c2c;
+            color: #b0b0b0;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .showcase-layout {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                浏览器UC
+            </a>
+            <nav class="nav-links">
+                <a href="#features">功能特性</a>
+                <a href="#speed">极速体验</a>
+                <a href="#download">下载中心</a>
+                <a href="#help">帮助中心</a>
+            </nav>
+            <a href="#download" class="cta-btn">立即下载</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>浏览器UC<br><span>让上网更简单、更智能</span></h1>
+                <p>专为移动端设计的极速浏览器，智能识别视频链接，一键加速播放，保护您的隐私安全，打造个性化的移动上网体验。</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="cta-btn btn-large">免费下载安卓版</a>
+                    <a href="#features" class="btn-large btn-outline">了解更多</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>核心功能</h2>
+                    <p>为您打造全方位的移动浏览解决方案</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        </div>
+                        <h3>极速内核</h3>
+                        <p>搭载先进的渲染引擎，加载网页速度提升200%，告别卡顿与等待，享受丝滑流畅的冲浪体验。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h3>视频加速</h3>
+                        <p>智能识别视频链接，一键开启加速模式。无需等待缓冲，直接全屏播放，支持后台播放。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3>安全防护</h3>
+                        <p>内置强大的安全防护系统，有效拦截恶意网站、钓鱼链接和广告弹窗，守护您的上网安全。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        </div>
+                        <h3>无痕模式</h3>
+                        <p>开启无痕浏览，不保存浏览记录、Cookies和缓存。保护您的隐私，防止个人信息泄露。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speed Test Section -->
+        <section id="speed" class="speed-test-section">
+            <div class="container speed-content">
+                <h2>测速体验</h2>
+                <p>实时检测您的网络连接质量，为您提供最优的浏览策略。</p>
+                <a href="#" class="speed-btn">立即测速</a>
+            </div>
+        </section>
+
+        <!-- Showcase Section -->
+        <section class="showcase">
+            <div class="container">
+                <div class="showcase-layout">
+                    <div class="showcase-image">
+                        <div class="phone-mockup">
+                            <div class="app-screen">
+                                <h4>UC浏览器</h4>
+                                <span>智能主页</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-text">
+                        <h2>智能首页，千人千面</h2>
+                        <p>浏览器UC会根据您的阅读习惯，自动为您推荐感兴趣的资讯、视频和小说内容。无论您是关注科技、娱乐还是财经，都能轻松找到所需。</p>
+                        <ul class="check-list">
+                            <li>海量正版小说资源</li>
+                            <li>实时热点新闻聚合</li>
+                            <li>海量实用插件扩展</li>
+                            <li>夜间护眼模式</li>
+                        </ul>
+                        <a href="#download" style="color: var(--primary-color); font-weight: 600; margin-top: 20px; display: inline-block;">查看功能详情 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="help" class="faq">
+            <div class="container faq-container">
+                <div class="section-title">
+                    <h2>常见问题</h2>
+                    <p>解决您在使用过程中的疑惑</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">浏览器UC支持哪些操作系统？</div>
+                    <div class="faq-answer">浏览器UC目前主要支持Android和iOS移动操作系统，为手机和平板用户提供服务。PC版本暂未开放。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">如何开启无痕浏览模式？</div>
+                    <div class="faq-answer">在浏览器主页点击右下角的“更多”或“菜单”按钮，选择“无痕模式”即可开启。开启后浏览器将不会保存任何浏览数据。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">视频加速功能需要消耗额外流量吗？</div>
+                    <div class="faq-answer">视频加速功能会通过服务器代理转发视频流，因此会消耗一定的流量。建议在Wi-Fi环境下使用以节省流量。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">下载的文件保存在哪里？</div>
+                    <div class="faq-answer">下载的文件默认保存在浏览器的下载目录中，您可以在“下载管理”中查看、打开或移动文件。</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>浏览器UC</h3>
+                    <p>致力于为用户提供极致、安全、智能的移动上网体验。让每一次点击都充满乐趣。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#">功能介绍</a></li>
+                        <li><a href="#">版本更新</a></li>
+                        <li><a href="#">插件市场</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>支持</h4>
+                    <ul>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">用户协议</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">微信公众号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 浏览器UC 版权所有
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Interaction Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
