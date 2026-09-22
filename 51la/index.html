@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51.la-网站流量统计与数据分析服务</title>
+    <meta name="description" content="51.la提供专业、稳定、免费的网站流量统计工具。帮助站长实时监控访客来源、访问路径、设备分布等关键数据，优化网站运营策略。">
+    <meta name="keywords" content="51.la,网站统计,流量分析,网站监测,访客统计,站长工具">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #1e293b;
+            --accent-color: #10b981;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-cta {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--secondary-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--secondary-color);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* Dashboard Preview Section */
+        .dashboard-preview {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .dashboard-preview .section-title {
+            color: white;
+        }
+
+        .dashboard-preview .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .dashboard-preview .feature-card h3,
+        .dashboard-preview .feature-card p {
+            color: #e2e8f0;
+        }
+
+        .dashboard-preview .feature-card p {
+            opacity: 0.8;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 20px;
+            color: var(--text-light);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            margin-top: 15px;
+            font-size: 14px;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .steps-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span>51.la</span> 统计
+            </a>
+            <nav class="nav-links">
+                <a href="#features">核心功能</a>
+                <a href="#dashboard">数据看板</a>
+                <a href="#how-to">使用指南</a>
+                <a href="#support">帮助中心</a>
+            </nav>
+            <a href="#" class="btn-cta">免费注册</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>专业的网站流量统计与分析工具</h1>
+                <p>51.la 深度解析您的网站访问数据，提供实时访客来源、地理位置、访问路径等关键指标，助您精准定位用户行为，优化运营策略。</p>
+                <div style="margin-bottom: 30px;">
+                    <a href="#" class="btn-cta" style="padding: 12px 30px; font-size: 16px;">立即开始统计</a>
+                    <a href="#" style="color: var(--text-light); margin-left: 15px; font-weight: 500;">查看演示案例</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1亿+</div>
+                        <div class="stat-label">累计统计网站</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">实时数据监控</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">永久免费基础版</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">为什么选择 51.la</h2>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>实时访客监控</h3>
+                        <p>精确到秒的实时访客数据，让您随时掌握网站当前在线人数、新访客与回访客比例，及时响应流量高峰。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🗺️</div>
+                        <h3>地理分布分析</h3>
+                        <p>详细展示访客的地理位置分布，包括国家、省份、城市及经纬度，帮助您了解目标市场并优化地域性内容。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>关键词搜索分析</h3>
+                        <p>深度挖掘用户通过搜索引擎找到您的关键词，分析搜索词与实际落地页的匹配度，优化SEO策略。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🖥️</div>
+                        <h3>多端设备识别</h3>
+                        <p>自动识别 PC、手机、平板等不同终端设备类型，分析各设备下的浏览体验与转化情况。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>访客来源追踪</h3>
+                        <p>清晰划分直接访问、搜索引擎、外部链接、社交媒体等流量来源，评估各推广渠道的效果。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>安全防护监测</h3>
+                        <p>内置异常流量监测机制，识别恶意爬虫与攻击行为，保护您的服务器资源与数据安全。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Preview Section -->
+        <section id="dashboard" class="dashboard-preview">
+            <div class="container">
+                <h2 class="section-title">数据看板概览</h2>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <h3>访问趋势图</h3>
+                        <p>可视化图表展示近7天、30天或自定义时间段的访问量变化趋势，辅助预测流量走势。</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>页面热力图</h3>
+                        <p>直观展示用户点击与浏览最频繁的区域，帮助您优化网页布局，提升用户体验。</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>转化漏斗</h3>
+                        <p>追踪从首次访问到完成目标（如注册、购买、下载）的转化路径，找出流失环节。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-to" class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">快速接入指南</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>注册账号</h4>
+                        <p>访问51.la官网，免费注册一个账号，获取唯一的统计代码。</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>获取代码</h4>
+                        <p>在后台获取统计代码，将其粘贴到您网站的 HTML <code>&lt;head&gt;</code> 标签中。</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>等待数据</h4>
+                        <p>保存代码后，系统将自动开始抓取数据。通常在 30 分钟后即可在后台看到初步统计结果。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span>51.la</span> 统计
+                    </a>
+                    <p>致力于为全球站长提供最专业、最易用、最安全的网站流量统计分析服务。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品服务</h4>
+                    <ul>
+                        <li><a href="#">流量统计</a></li>
+                        <li><a href="#">网站监控</a></li>
+                        <li><a href="#">API 接口</a></li>
+                        <li><a href="#">数据导出</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助支持</h4>
+                    <ul>
+                        <li><a href="#">使用教程</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">服务条款</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>客服邮箱：support@51.la</li>
+                        <li>工作时间：9:00 - 18:00</li>
+                        <li>关注我们：微信公众号</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 51.la 网站流量统计系统. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
