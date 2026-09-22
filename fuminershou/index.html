@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="富民二手房专业信息服务平台，提供富民县二手房房源查询、房价走势、房产资讯、购房指南及本地中介服务。">
+    <meta name="keywords" content="富民二手房, 富民二手房出售, 富民二手房买卖, 富民房产, 昆明富民二手房, 富民房价">
+    <title>富民二手房-本地房源查询与交易服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f0f2f5;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #e1e4e8;
+            --white: #ffffff;
+            --accent-color: #ff6b00;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a.active {
+            color: var(--primary-color);
+        }
+
+        .header-actions button {
+            padding: 8px 20px;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .header-actions button.primary {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+        }
+
+        .header-actions button:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0056b3 0%, #003d80 100%);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .search-box {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0 32px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            height: 42px;
+            align-self: end;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px var(--spacing-unit);
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 32px;
+            flex: 1;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--white);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .filter-bar span {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .filter-bar select, .filter-bar input[type="date"] {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        /* House Grid */
+        .house-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .house-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .house-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.6);
+            color: var(--white);
+            padding: 2px 8px;
+            font-size: 12px;
+            border-radius: 2px;
+        }
+
+        .card-content {
+            padding: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card-address {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 2px 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 2px;
+            color: var(--text-light);
+        }
+
+        .tag.hot {
+            color: #e74c3c;
+            border-color: #fadbd8;
+            background: #fdedec;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: #e74c3c;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .price span {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .agent {
+            font-size: 12px;
+            color: var(--primary-color);
+        }
+
+        /* Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-widget {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .price-rank-list {
+            list-style: none;
+        }
+
+        .price-rank-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 14px;
+        }
+
+        .price-rank-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            width: 24px;
+            height: 24px;
+            background: var(--secondary-color);
+            color: var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .rank-num.top {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .district-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .district-item {
+            font-size: 14px;
+            padding: 8px;
+            background: var(--secondary-color);
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .district-item:hover {
+            background: #e2e6ea;
+        }
+
+        .guide-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .guide-icon {
+            width: 40px;
+            height: 40px;
+            background: #e3f2fd;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .guide-text h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .guide-text p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            padding: 48px 0 24px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 16px;
+            }
+
+            nav ul {
+                gap: 16px;
+                margin-top: 12px;
+                font-size: 14px;
+            }
+
+            .search-box {
+                grid-template-columns: 1fr;
+            }
+
+            .search-btn {
+                padding: 12px;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <a href="#" class="logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span>富民二手房</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">新房</a></li>
+                <li><a href="#">租房</a></li>
+                <li><a href="#">资讯</a></li>
+                <li><a href="#">我的</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button>登录</button>
+            <button class="primary">免费发布房源</button>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
+        <h1>发现富民理想家园</h1>
+        <p>精选富民县优质二手房房源，真实房源，精准匹配，助您安家富民</p>
+        <form class="search-box">
+            <div class="input-group">
+                <label>房源类型</label>
+                <select>
+                    <option>全部类型</option>
+                    <option>住宅</option>
+                    <option>别墅</option>
+                    <option>商铺</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>区域/小区</label>
+                <input type="text" placeholder="例如：永定街道">
+            </div>
+            <div class="input-group">
+                <label>价格范围</label>
+                <select>
+                    <option>不限</option>
+                    <option>50万以内</option>
+                    <option>50-100万</option>
+                    <option>100万以上</option>
+                </select>
+            </div>
+            <button type="button" class="search-btn">搜索</button>
+        </form>
+    </div>
+</section>
+
+<main class="main-container">
+    <!-- Content Area -->
+    <section class="content-area">
+        <div class="filter-bar">
+            <span>排序：</span>
+            <select>
+                <option>最新发布</option>
+                <option>价格从低到高</option>
+                <option>价格从高到低</option>
+                <option>面积从大到小</option>
+            </select>
+            <span style="margin-left: auto;">共找到 <strong>1,248</strong> 套房源</span>
+        </div>
+
+        <div class="house-grid">
+            <!-- House Card 1 -->
+            <article class="house-card">
+                <div class="card-image">
+                    <span class="card-tag">急售</span>
+                    <img src="https://picsum.photos/seed/house1/400/300" alt="富民二手房房源图片">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">阳光花园两室一厅精装房</h3>
+                    <div class="card-address">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        富民县永定街道阳光花园
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">满五唯一</span>
+                        <span class="tag">南北通透</span>
+                        <span class="tag hot">随时看房</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">98万 <span>/ 平方</span></div>
+                        <div class="agent">中介：李经理</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- House Card 2 -->
+            <article class="house-card">
+                <div class="card-image">
+                    <img src="https://picsum.photos/seed/house2/400/300" alt="富民二手房房源图片">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">翠湖湾三室两厅中档装修</h3>
+                    <div class="card-address">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        富民县散旦镇翠湖湾
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">近地铁</span>
+                        <span class="tag">精装</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">135万 <span>/ 平方</span></div>
+                        <div class="agent">中介：王女士</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- House Card 3 -->
+            <article class="house-card">
+                <div class="card-image">
+                    <span class="card-tag">新上</span>
+                    <img src="https://picsum.photos/seed/house3/400/300" alt="富民二手房房源图片">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">富民老城区四室两厅大户型</h3>
+                    <div class="card-address">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        富民县永定街道老城区
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">学区房</span>
+                        <span class="tag">采光好</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">210万 <span>/ 平方</span></div>
+                        <div class="agent">中介：张先生</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- House Card 4 -->
+            <article class="house-card">
+                <div class="card-image">
+                    <img src="https://picsum.photos/seed/house4/400/300" alt="富民二手房房源图片">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">西山脚下别墅独栋带院</h3>
+                    <div class="card-address">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        富民县散旦镇西山脚下
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">环境优美</span>
+                        <span class="tag">带花园</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">450万 <span>/ 平方</span></div>
+                        <div class="agent">中介：赵经理</div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button style="padding: 10px 30px; background: var(--white); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer;">加载更多房源</button>
+        </div>
+    </section>
+
+    <!-- Sidebar Area -->
+    <aside>
+        <div class="sidebar-widget">
+            <h3 class="widget-title">富民二手房价格走势</h3>
+            <ul class="price-rank-list">
+                <li class="price-rank-item">
+                    <div><span class="rank-num top">1</span>永定街道</div>
+                    <div>8,500元/平</div>
+                </li>
+                <li class="price-rank-item">
+                    <div><span class="rank-num">2</span>散旦镇</div>
+                    <div>7,200元/平</div>
+                </li>
+                <li class="price-rank-item">
+                    <div><span class="rank-num">3</span>罗免镇</div>
+                    <div>6,800元/平</div>
+                </li>
+                <li class="price-rank-item">
+                    <div><span class="rank-num">4</span>赤鹫镇</div>
+                    <div>5,900元/平</div>
+                </li>
+                <li class="price-rank-item">
+                    <div><span class="rank-num">5</span>东村镇</div>
+                    <div>6,100元/平</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-widget">
+            <h3 class="widget-title">热门区域推荐</h3>
+            <div class="district-list">
+                <div class="district-item">永定街道</div>
+                <div class="district-item">散旦镇</div>
+                <div class="district-item">罗免镇</div>
+                <div class="district-item">赤鹫镇</div>
+                <div class="district-item">东村镇</div>
+                <div class="district-item">款庄乡</div>
+            </div>
+        </div>
+
+        <div class="sidebar-widget">
+            <h3 class="widget-title">购房指南</h3>
+            <div class="guide-item">
+                <div class="guide-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                </div>
+                <div class="guide-text">
+                    <h4>富民购房注意事项</h4>
+                    <p>了解产权、税费及过户流程</p>
+                </div>
+            </div>
+            <div class="guide-item">
+                <div class="guide-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div class="guide-text">
+                    <h4>如何选择中介</h4>
+                    <p>资质查验与服务评价</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h3>关于我们</h3>
+            <p style="font-size: 13px; line-height: 1.8;">富民二手房致力于为用户提供真实、准确、高效的本地二手房交易服务，连接买卖双方，打造透明房产市场。</p>
+        </div>
+        <div class="footer-col">
+            <h3>快速链接</h3>
+            <ul>
+                <li><a href="#">新房中心</a></li>
+                <li><a href="#">租房频道</a></li>
+                <li><a href="#">二手房出售</a></li>
+                <li><a href="#">二手房求购</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>帮助中心</h3>
+            <ul>
+                <li><a href="#">发布房源流程</a></li>
+                <li><a href="#">安全交易指南</a></li>
+                <li><a href="#">联系我们</a></li>
+                <li><a href="#">意见反馈</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>联系方式</h3>
+            <ul>
+                <li>电话：0871-12345678</li>
+                <li>邮箱：service@fuminhouse.com</li>
+                <li>地址：云南省昆明市富民县</li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2023 富民二手房平台 版权所有 | 仅供演示使用</p>
+    </div>
+</footer>
+
+</body>
+</html>
