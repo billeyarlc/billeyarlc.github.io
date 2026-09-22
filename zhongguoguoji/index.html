@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="中国国际航空官网为您提供航班查询、机票预订、值机选座、行李托运及机场服务信息。作为国内领先的航空公司，致力于为您提供安全、舒适、便捷的航空出行体验。">
+    <meta name="keywords" content="中国国际航空官网,国航,中国国际航空,航班查询,机票预订,值机选座">
+    <title>中国国际航空官网-航班查询与机票预订服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #E60012;
+            --primary-hover: #c4000e;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --bg-body: #f5f7fa;
+            --bg-white: #ffffff;
+            --border-color: #e1e4e8;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Utility Classes */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 8px; }
+        .gap-4 { gap: 16px; }
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 16px; }
+        .mt-8 { margin-top: 32px; }
+        .mb-4 { margin-bottom: 16px; }
+        .font-bold { font-weight: 700; }
+        .text-primary { color: var(--primary-color); }
+        .text-sm { font-size: 14px; }
+        .text-xs { font-size: 12px; }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar {
+            background-color: #f0f0f0;
+            font-size: 12px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-main {
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -22px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-text {
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        .btn-text:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ed 100%);
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Booking Widget */
+        .booking-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 32px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .booking-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-wrapper input:focus, .input-wrapper select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            height: 46px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #fff0f1;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Route Map / News */
+        .content-split {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .route-map-placeholder {
+            background-color: #eef2f6;
+            height: 400px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .route-map-placeholder::after {
+            content: "航线网络示意图";
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .news-sidebar h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .news-list li {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .news-list li:last-child {
+            border-bottom: none;
+        }
+
+        .news-list a {
+            font-size: 14px;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .news-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Info Section */
+        .info-section {
+            background-color: var(--bg-white);
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary-color);
+            opacity: 0.2;
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .top-bar { display: none; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-image { order: -1; }
+            .booking-form { grid-template-columns: 1fr; }
+            .content-split { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .booking-section { padding: 20px; }
+            .logo { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Utility Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span>欢迎访问中国国际航空官网，我们致力于为您提供安全、舒适、便捷的出行体验。</span>
+            <div class="flex gap-2">
+                <a href="#" class="btn-text">用户登录</a>
+                <a href="#" class="btn-text">会员中心</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header>
+        <div class="container">
+            <nav class="nav-main flex justify-between items-center">
+                <a href="#" class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V14L13 9V3.5L11 2.5L9 3.5V9L1 14V16L9 13.5V19L7 20.5V22L11 21L15 22V20.5L13 19V13.5L21 16Z" fill="#E60012"/>
+                    </svg>
+                    中国国际航空<span>官网</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">航班查询</a></li>
+                    <li><a href="#">机票预订</a></li>
+                    <li><a href="#">中转服务</a></li>
+                    <li><a href="#">会员服务</a></li>
+                    <li><a href="#">值机选座</a></li>
+                </ul>
+                <div class="user-actions">
+                    <a href="#" class="btn-text">帮助中心</a>
+                    <a href="#" class="btn-text">联系我们</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>连接中国，通达世界</h1>
+                    <p>作为中国最大的航空公司之一，中国国际航空为您提供覆盖全球的航线网络和优质的航空服务。即刻预订，开启您的精彩旅程。</p>
+                </div>
+                <div class="hero-image">
+                    <img src="https://picsum.photos/seed/aircraft/600/350" alt="中国国际航空客机">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Widget -->
+    <div class="container">
+        <div class="booking-section">
+            <div class="booking-tabs">
+                <div class="tab active">单程</div>
+                <div class="tab">往返</div>
+                <div class="tab">多程</div>
+            </div>
+            <form class="booking-form" onsubmit="event.preventDefault(); alert('查询功能仅供演示，请前往实际官网操作。');">
+                <div class="form-group">
+                    <label>出发地</label>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="请输入出发城市">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>目的地</label>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="请输入目的地城市">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>出发日期</label>
+                    <div class="input-wrapper">
+                        <input type="date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>舱位等级</label>
+                    <div class="input-wrapper">
+                        <select>
+                            <option>全经济舱</option>
+                            <option>超级经济舱</option>
+                            <option>公务舱</option>
+                            <option>头等舱</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">立即查询</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">核心服务</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>航班动态</h3>
+                    <p>实时查询航班起飞、到达及延误信息，助您合理规划行程。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎫</div>
+                    <h3>在线购票</h3>
+                    <p>便捷的在线预订系统，支持多种支付方式，安全快速。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✍️</div>
+                    <h3>网上值机</h3>
+                    <p>提前办理登机手续，在线选择座位，节省机场排队时间。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛫</div>
+                    <h3>中转服务</h3>
+                    <p>提供免费中转住宿、行李直挂及接送机服务，舒适无忧。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Split -->
+    <section class="content-split">
+        <div class="route-map-placeholder">
+            <!-- Placeholder for Map -->
+        </div>
+        <aside class="news-sidebar">
+            <h3>最新公告</h3>
+            <ul class="news-list">
+                <li>
+                    <a href="#">关于调整部分国际航线航班时刻的通知</a>
+                    <span class="news-date">2023-10-24</span>
+                </li>
+                <li>
+                    <a href="#">国航“知音”会员积分兑换活动开启</a>
+                    <span class="news-date">2023-10-22</span>
+                </li>
+                <li>
+                    <a href="#">北京大兴国际机场进出港服务指南</a>
+                    <span class="news-date">2023-10-20</span>
+                </li>
+                <li>
+                    <a href="#">关于优化机上餐饮服务的公告</a>
+                    <span class="news-date">2023-10-18</span>
+                </li>
+            </ul>
+        </aside>
+    </section>
+
+    <!-- Statistics -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-number">100+</div>
+                    <div class="info-label">通航国家与地区</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-number">300+</div>
+                    <div class="info-label">国内通航城市</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-number">4</div>
+                    <div class="info-label">四大枢纽机场</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>中国国际航空</h4>
+                    <p style="font-size: 14px; line-height: 1.8; color: #999;">
+                        中国国际航空股份有限公司（Air China）是中国唯一一家载旗航空公司，致力于为旅客提供安全、舒适、便捷的航空运输服务。国航以北京首都国际机场为主要运营基地，致力于建设世界一流航空运输企业。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">航班查询</a></li>
+                        <li><a href="#">机票预订</a></li>
+                        <li><a href="#">会员服务</a></li>
+                        <li><a href="#">中转服务</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>客户服务</h4>
+                    <ul>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">行李政策</a></li>
+                        <li><a href="#">特殊旅客服务</a></li>
+                        <li><a href="#">投诉建议</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">新闻中心</a></li>
+                        <li><a href="#">投资者关系</a></li>
+                        <li><a href="#">企业社会责任</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 中国国际航空股份有限公司 版权所有 | 京ICP备06037725号 | 京公网安备11000002000088号</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
